@@ -1,70 +1,122 @@
-<<<<<<< HEAD
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Passo a Passo para Configuração e Execução da aplicação
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Pré-requisitos
+Certifique-se de que os seguintes softwares estejam instalados no sistema antes de começar:
 
-## About Laravel
+1. PHP: Versão 8.1 ou superior.
+   - Instale em https://www.php.net/downloads.
+   - Certifique-se de que as extensões necessárias (como `pdo_mysql`, `openssl`, `mbstring`, `tokenizer`, e `json`) estão habilitadas.
+   - Adicione o diretório do PHP ao PATH nas Variáveis de Ambiente do Sistema para executar `php` no terminal.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+2. Composer: Versão mais recente.
+   - Instale em https://getcomposer.org.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+3. MySQL: Servidor de banco de dados.
+   - Instale em https://dev.mysql.com/downloads/mysql/.
+   - Adicione o diretório `bin` do MySQL ao PATH nas Variáveis de Ambiente do Sistema para executar `mysql` no terminal.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+4. Postman: Ferramenta para testar APIs.
+   - Baixe em https://www.postman.com/downloads/.
 
-## Learning Laravel
+5. Git: Para clonar o repositório.
+   - Instale em https://git-scm.com/.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Passo a Passo
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Fazer fork do projeto
+   - Acesse o repositório no GitHub: https://github.com/danielgodoi13/cyber_security_project.
+   - Clique em "Fork" no canto superior direito para criar uma cópia no seu GitHub.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. Clonar o repositório para sua máquina
+   - No terminal, execute:
+     ```bash
+     git clone https://github.com/<seu-usuario>/cyber_security_project.git
+     ```
+   - Substitua `<seu-usuario>` pelo nome do seu usuário no GitHub.
+   - Entre na pasta do projeto:
+     ```bash
+     cd cyber_security_project
+     ```
 
-## Laravel Sponsors
+3. Configurar o arquivo .env
+   - Renomeie o arquivo `.env.example` para `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   - Edite o arquivo `.env` e configure as credenciais do banco de dados. Você deve definir:
+     ```env
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=cyber_security_db
+     DB_USERNAME=seu_usuario
+     DB_PASSWORD=sua_senha
+     ```
+     - Substitua `seu_usuario` e `sua_senha` pelas credenciais configuradas no MySQL. Certifique-se de usar um nome de banco significativo, como `cyber_security_db`.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. Instalar as dependências PHP
+   - No terminal, execute:
+     ```bash
+     composer install
+     ```
 
-### Premium Partners
+5. Criar o banco de dados no MySQL
+   Após configurar o `.env` e instalar as dependências, crie o banco de dados usando MySQL no terminal:
+   
+   1. Abra o terminal e execute:
+      ```bash
+      mysql -u root -p
+      ```
+      Insira a senha do usuário `root` (ou o usuário configurado no `.env`).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+   2. No prompt do MySQL, execute os seguintes comandos:
+      ```sql
+      DROP DATABASE IF EXISTS cyber_security_db;
+      CREATE DATABASE cyber_security_db;
+      ```
+      Substitua `cyber_security_db` pelo nome configurado no `.env`.
 
-## Contributing
+   3. Saia do MySQL:
+      ```bash
+      EXIT;
+      ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. Gerar a chave da aplicação
+   - No terminal, execute:
+     ```bash
+     php artisan key:generate
+     ```
 
-## Code of Conduct
+7. Configurar o JWT
+   - Gere a chave secreta para o JWT:
+     ```bash
+     php artisan jwt:secret
+     ```
+   - Este comando atualizará automaticamente o valor de `JWT_SECRET` no arquivo `.env`.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+8. Executar as migrações
+   - Rode as migrações para criar as tabelas no banco de dados:
+     ```bash
+     php artisan migrate
+     ```
 
-## Security Vulnerabilities
+9. Iniciar o servidor
+   - Execute o servidor Laravel:
+     ```bash
+     php artisan serve
+     ```
+   - A aplicação estará disponível em http://localhost:8000.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+10. Testar as requisições com Postman
+   Para testar as APIs da aplicação:
 
-## License
+   1. Importe a coleção compartilhada:
+      - Abra o Postman e clique em "Import".
+      - Escolha a opção "Link" e cole o link da coleção:
+        ```
+        https://equipe-trabalho-a13-cybersecurity.postman.co/workspace/A1%2F3-CyberSecurity~25b5dc18-eca0-4285-9c85-57914854e38b/collection/33239113-e8bf710f-80d8-434b-87ff-d6f46002b590?action=share&creator=33239113
+        ```
+      - Clique em "Import".
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-=======
-# cyber_security_project
->>>>>>> d7891e6650f3bb12ed15f15eba6123495ab59914
+   2. Execute as requisições:
+      - As requisições já estão configuradas na coleção. Basta selecionar a desejada e clicar em "Send" para testar.
